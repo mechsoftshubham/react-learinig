@@ -30,19 +30,19 @@ export default function TextForm(props) {
             placeholder="Enter text here"
             value={text}
             onChange={handleOnChange}
-            style={{ backgroundColor: props.mode === "dark" ? "#042743" : "white", color: props.mode === "dark" ? "white" : "black" }}
+            style={{ backgroundColor: props.mode === "dark" ? "#042743" : "white", color: props.mode === "dark" ? "white" : "black", caretColor: props.mode === "dark" ? "white" : "black" }}
             className="form-control"
             id="exampleFormControlTextarea1"
             rows="8"
           ></textarea>
           <div className="container">
             {/* convert to uppercase  */}
-            <button className="btn btn-primary my-3" type="submit" onClick={handleUpClick}>
+            <button disabled={text.length === 0} className="btn btn-primary my-3 mx-1" type="submit" onClick={handleUpClick}>
               Convert to Uppercase
             </button>
 
             {/* convert to lowercase  */}
-            <button className="btn btn-primary my-3 mx-3" type="submit" onClick={handleLowClick}>
+            <button disabled={text.length === 0} className="btn btn-primary my-3 mx-1" type="submit" onClick={handleLowClick}>
               Convert to Lowercase
             </button>
           </div>
@@ -52,9 +52,9 @@ export default function TextForm(props) {
       <div className="container my-3" style={{ color: props.mode === "dark" ? "white" : "black" }}>
         <h1>Your text summary</h1>
         <p>
-          {text.split(" ").length} words and {text.length} characters
+          {text.split(/\s+/).filter((element) => { return element.length !== 0; }).length} words and {text.length} characters
         </p>
-        <p>{0.008 * text.split(" ").length} minutes to read</p>
+        <p>{0.008 * text.split(/\s+/).filter((element) => { return element.length !== 0; }).length} minutes to read</p>
         <h2>Preview</h2>
         <p>{text === "" ? "Nothing to preview" : text}</p>
       </div>

@@ -139,11 +139,7 @@ export default function About({ mode }) {
           </div>
         </div>
       </div>
-      <div className="my-3">
-        <button className="btn btn-primary" type="button" onClick={toggleStyle}>
-          {btnText}
-        </button>
-      </div>
+     
     </div>
   );
 }
